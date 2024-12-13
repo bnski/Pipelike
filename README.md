@@ -89,8 +89,8 @@ class CreateUserPipe extends ActionPipe
     }
 
     // Keep validations focused on what's needed for the pipe
-		// Stay out of user land and business logic policy
-		// Ex: 'user' => InstanceOfRule(User::class)
+    // Stay out of userland and business logic policy
+    // Ex: 'user' => InstanceOfRule(User::class)
     // Your future self will thank you
     protected function rules(): array
     {
