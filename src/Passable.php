@@ -76,14 +76,21 @@ class Passable extends Fluent
             ->havingMessages([$attribute => $messages]);
     }
 
-    public function fill(Arrayable|array $data): static
+    public function fill($attributes): static
     {
-        $attributes = $data instanceof Arrayable ? $data->toArray() : $data;
 
-        foreach ($attributes as $key => $value) {
-            $this->attributes[$key] = $value;
+        if (!is_array($attributes) && !$attributes instanceof Arrayable) {
+            return $this;
+        }
+
+        $array = is_array($attributes) ? $attributes : $attributes->toArray();
+
+        foreach ($array as $key => $value) {
+            $this->setAttribute($key, $value);
         }
 
         return $this;
+
     }
+
 }
